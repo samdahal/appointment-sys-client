@@ -16,4 +16,9 @@ export class ApiService {
   doLogin(data) {
     return this.http.post('/auth/login', data);
   }
+
+  isAuthenticated() {
+    console.log('Making http request to check if user is authenticated');
+    return this.http.post('/auth/isAuthenticated', {token: localStorage.getItem('auth_token')});
+  }
 }
