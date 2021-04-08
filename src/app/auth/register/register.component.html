@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+  <div class="col-md-12 col-sm-12 login">
+    <div class="card">
+      <div class="card-body">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First Name</label>
+      <input [(ngModel)]="user.firstName" name="firstName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Last Name</label>
+      <input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Username</label>
+      <input [(ngModel)]="user.username" type="text" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input [(ngModel)]="user.password" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Confirm password</label>
+      <input [(ngModel)]="confirmPassword" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <button (click)="doRegisterUser()" class="btn btn-primary">Register</button>
+    </div>
+    <div *ngIf="hasUserCreationError" class="alert alert-danger" role="alert">
+      {{userCreationErrorMsg}}
+    </div>
+        <div *ngIf="userCreationSucceed" class="alert alert-success" role="alert">
+          {{userCreationSucceedMessage}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

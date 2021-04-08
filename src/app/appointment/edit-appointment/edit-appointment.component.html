@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+  <div class="col-md-12 col-sm-12 login">
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="firstname">First name</label>
+            <input [(ngModel)]="appointment.user.firstName" name="firstName" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Last name</label>
+            <input [(ngModel)]="appointment.user.lastName" name="lastName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Doe">
+          </div>
+          <div class="form-group">
+            <label for="appointmentTime">Appointment Time</label>
+            <input name="appointmentTime" (ngModelChange)="appointment.start = $event" [ngModel]="appointment.start | date:'yyyy-MM-ddTHH:mm'" type="datetime-local" class="form-control" id="appointmentTime">
+          </div>
+          <div class="form-group">
+            <label for="visitReason">Visit Reason</label>
+            <input name="visitReason" [(ngModel)]="appointment.title" type="text" class="form-control" id="visitReason">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="updateAppointment()">Update Appointment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

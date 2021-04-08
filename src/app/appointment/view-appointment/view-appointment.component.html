@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+  <div class="col-md-12 col-sm-12 login">
+    <div class="card">
+      <div class="card-body">
+        <p>Appointment info</p>
+        <p>First name: {{retrievedAppointment.user.firstName}}</p>
+        <p>Last name: {{retrievedAppointment.user.lastName}}</p>
+        <p>Appointment time: {{retrievedAppointment.start |date: 'M/d/yyyy, h:mm a'}}</p>
+        <p>Visit reason: {{retrievedAppointment.title}}</p>
+      </div>
+    </div>
+
+    <br/>
+    <div class="card">
+      <div class="card-body">
+        <div class="alert alert-warning" role="alert" *ngIf="retrievedAppointment.active === false">
+          Because this appointment has been canceled, you cannot change anything
+        </div>
+        <button [disabled]="retrievedAppointment.active === false" class="btn btn-primary" (click)="editAppointment()" style="margin-right: 1em">Request Changes</button>
+        <button class="btn btn-danger" [disabled]="retrievedAppointment.active === false" (click)="cancelAppointment()">Cancel Appointment</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-md-12 col-sm-12 login">
+    <div class="card">
+      <div class="card-body">
+        <p>Upcoming appointments</p>
+        <table class="table table-bordered" *ngIf="appointments">
+          <thead>
+          <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Appointment Start time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Detail</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let a of appointments">
+            <td>{{a.user.firstName}}</td>
+            <td>{{a.user.lastName}}</td>
+            <td>{{a.title}}</td>
+            <td>{{a.start| date: 'M/d/yyyy, h:mm a'}}</td>
+            <td>{{a.active === false ? 'Canceled': 'Active'}}</td>
+            <td><a [routerLink]="['/appointment', a.id]">View Details</a></td>
+          </tr>
+          <!--<tr>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>Larry the Bird</td>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>-->
+          </tbody>
+        </table>
+        <p>Past Appointments</p>
+      </div>
+    </div>
+  </div>
+</div>
+

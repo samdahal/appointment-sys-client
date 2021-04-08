@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  myApiUrl: 'http://localhost:8080/v1/api/',
-  authUrl: 'http://localhost:8080/auth/login'
+  myApiUrl: 'http://localhost:8080/v1/api',
+  authUrl: 'http://localhost:8080/auth/login',
+  signupUrl: 'http://localhost:8080/auth/signup'
 };
 
 /*
