@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../api.service';
 import {rS} from '@angular/core/src/render3';
 import {Router} from '@angular/router';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private authService: AuthService) { }
 
   username: '';
   password: '';
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
 
       if (r.status && r.status === 'success') {
         localStorage.setItem('auth_token', r.token);
+        this.authService.userLoggedIn.next(true);
         this.router.navigate(['/']);
       }
 

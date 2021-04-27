@@ -12,6 +12,7 @@ import { ViewAppointmentComponent } from './appointment/view-appointment/view-ap
 import { MyProfileComponent } from './auth/my-profile/my-profile.component';
 import { EditAppointmentComponent } from './appointment/edit-appointment/edit-appointment.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { NavComponent } from './shared/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RegisterComponent } from './auth/register/register.component';
     MyProfileComponent,
     EditAppointmentComponent,
     RegisterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
