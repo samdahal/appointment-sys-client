@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService} from './api.service';
 import {Subscription} from 'rxjs';
 import {AuthService} from './auth.service';
+import {UserService} from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ export class AppComponent implements OnInit, OnDestroy {
   currentUser: any = {};
   isAdmin = false;
   userLoggedInSub: Subscription;
+  userInfoSetSub: Subscription;
 
-  constructor(private apiService: ApiService, private authService: AuthService) {
+  constructor(private apiService: ApiService, private authService: AuthService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -37,10 +39,25 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isAuthenticated = didUserLoggedIn;
     });
 
+    this.initSubscriptions();
+  }
+
+  private initSubscriptions(): void {
+    this.userInfoSetSub = this.userService.userInfoSetSubject.subscribe(userinfo => {
+      this.currentUser = this.currentUser || {};
+      this.currentUser.username = userinfo.username;
+      this.currentUser.userId = userinfo.userId;
+      this.currentUser.roles = userinfo.userRoles;
+    });
+  }
+
+  private deInitSubscriptions(): void {
+    this.userLoggedInSub.unsubscribe();
+    this.userInfoSetSub.unsubscribe();
   }
 
   ngOnDestroy() {
-    this.userLoggedInSub.unsubscribe();
+    this.deInitSubscriptions();
   }
 
 }

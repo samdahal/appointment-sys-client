@@ -3,6 +3,7 @@ import {ApiService} from '../../api.service';
 import {rS} from '@angular/core/src/render3';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import {AuthService} from '../../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private apiService: ApiService, private router: Router, private authService: AuthService) { }
+  constructor(private apiService: ApiService, private router: Router, private authService: AuthService, private userService: UserService) { }
 
   username: '';
   password: '';
@@ -32,7 +33,15 @@ export class LoginComponent implements OnInit {
 
       if (r.status && r.status === 'success') {
         localStorage.setItem('auth_token', r.token);
+        localStorage.setItem('username', r.username);
+        localStorage.setItem('userId', r.userId);
+        localStorage.setItem('userRoles', JSON.stringify(r.roles));
         this.authService.userLoggedIn.next(true);
+        this.userService.userInfoSetSubject.next({
+          username: localStorage.getItem('username'),
+          userId: parseInt(localStorage.getItem('userId')),
+          userRoles: JSON.parse(localStorage.getItem('userRoles'))
+        });
         this.router.navigate(['/']);
       }
 
